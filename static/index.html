@@ -14,6 +14,7 @@
         .response-box { margin-top: 20px; padding: 15px; background: #e9ecef; border-left: 4px solid #007bff; border-radius: 4px; white-space: pre-wrap; }
         .loading { color: #666; font-style: italic; text-align: center; margin-top: 10px; }
     </style>
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.js"></script>
 </head>
 <body>
 <div class="container">
@@ -48,7 +49,7 @@
 
             const data = await res.json();
             if (res.ok) {
-                responseBox.textContent = data.answer;
+                responseBox.innerHTML = marked.parse(data.answer);
             } else {
                 responseBox.textContent = "Error: " + (data.detail || "Something went wrong.");
             }
